@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="bn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Fontawesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+      integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+      crossorigin="anonymous"
+    />
+    <title>ফায়ার সেফটি ম্যাপ</title>
+    <link rel="stylesheet" href="common.css" />
+    <link rel="stylesheet" href="signup_civilian_fireofficer.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-start">
+        <button id="back-btn" class="nav-btn" onclick="history.back()">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+      </div>
+      <div class="nav-end">
+        <div class="language-toggle">
+          <input type="checkbox" id="language-toggle" class="toggle-input" />
+          <label for="language-toggle" class="toggle-label">
+            <span class="toggle-en">En</span>
+            <span class="toggle-bn">Bn</span>
+          </label>
+        </div>
+        <img src="images/logo.png" alt="logo" class="logo" />
+      </div>
+    </nav>
+
+    <div class="container">
+      <form action="signup_action.php" method="POST">
+        <!-- Hidden input for role -->
+        <input type="hidden" name="role" value="fire_officer">
+
+        <h2>ফায়ার অফিসার সাইন আপ</h2>
+
+        <div class="input-group">
+          <label for="name">নাম</label>
+          <input type="text" id="name" name="name" required />
+        </div>
+
+        <div class="input-group">
+          <label for="email">ইমেইল</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+
+        <div class="input-group">
+          <label for="phone">ফোন নম্বর</label>
+          <input type="tel" id="phone" name="phone" required />
+        </div>
+
+        <div class="input-group">
+          <label for="location">স্টেশন নাম</label>
+          <input type="text" id="location" name="location" required />
+        </div>
+
+        <div class="input-group">
+          <label for="password">পাসওয়ার্ড</label>
+          <input type="password" id="password" name="password" required />
+        </div>
+
+        <button type="submit">সাইন আপ</button>
+      </form>
+    </div>
+
+    <footer>
+      <p>&copy; 2025 ফায়ার সার্ভিস ম্যাপ</p>
+    </footer>
+  </body>
+</html>

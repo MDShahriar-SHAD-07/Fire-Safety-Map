@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="bn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>সাইন আপ</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+      integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="signup_design.css" />
+    <link rel="stylesheet" href="common.css" />
+    <script src="common.js"></script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-start">
+        <button id="back-btn" class="nav-btn" onclick="history.back()">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+      </div>
+      <div class="nav-end">
+        <div class="language-toggle">
+          <input type="checkbox" id="language-toggle" class="toggle-input" />
+          <label for="language-toggle" class="toggle-label">
+            <span class="toggle-en">En</span>
+            <span class="toggle-bn">Bn</span>
+          </label>
+        </div>
+        <img src="images/logo.png" alt="logo" class="logo" />
+      </div>
+    </nav>
+
+    <div class="container">
+      <h1 class="signup-title">কোন রোল এ সাইন আপ করবেন?</h1>
+      <div class="role-buttons">
+        <button
+          class="role-btn"
+          onclick="window.location.href='signup_civilian.html'"
+        >
+          <span class="role-icon">👤</span>
+          <span class="role-text">সাধারণ নাগরিক</span>
+        </button>
+        <button
+          class="role-btn"
+          onclick="window.location.href='signup_fire_officer.html'"
+        >
+          <span class="role-icon">🚒</span>
+          <span class="role-text">ফায়ার অফিসার</span>
+        </button>
+      </div>
+
+      <!-- Link to login page -->
+      <p>আগেই অ্যাকাউন্ট আছে? <a href="login.html">এখানে লগইন করুন</a></p>
+    </div>
+
+    <footer>
+      <p>&copy; 2025 ফায়ার সার্ভিস ম্যাপ</p>
+    </footer>
+  </body>
+</html>

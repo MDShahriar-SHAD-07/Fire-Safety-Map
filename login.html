@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="bn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Fontawesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+      integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+      crossorigin="anonymous"
+    />
+    <title>লগইন</title>
+
+    <link rel="stylesheet" href="login_design.css" />
+    <link rel="stylesheet" href="common.css" />
+    <script>
+      function setRole() {
+        // Get the selected role
+        const selectedRole = document.querySelector('input[name="role"]:checked');
+        // Assign the selected role value to the hidden input field
+        if (selectedRole) {
+          document.getElementById("role_hidden").value = selectedRole.value;
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-start">
+        <button id="back-btn" class="nav-btn" onclick="history.back()">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+      </div>
+      <div class="nav-end">
+        <div class="language-toggle">
+          <input type="checkbox" id="language-toggle" class="toggle-input" />
+          <label for="language-toggle" class="toggle-label">
+            <span class="toggle-en">En</span>
+            <span class="toggle-bn">Bn</span>
+          </label>
+        </div>
+        <img src="images/logo.png" alt="logo" class="logo" />
+      </div>
+    </nav>
+    <div class="container">
+      <!-- Role Selection Section -->
+      <div class="role-selection">
+        <div class="role-option">
+          <input
+            type="radio"
+            id="civilian"
+            name="role"
+            value="civilian"
+            required
+          />
+          <label for="civilian" class="role-label">সাধারণ নাগরিক</label>
+        </div>
+        <div class="role-option">
+          <input
+            type="radio"
+            id="fire_officer"
+            name="role"
+            value="fire_officer"
+            required
+          />
+          <label for="fire_officer" class="role-label">ফায়ার অফিসার</label>
+        </div>
+      </div>
+
+      <form id="loginForm">
+        <label for="email">ইমেইল</label>
+        <input type="email" name="email" id="email" required />
+      
+        <label for="password">পাসওয়ার্ড</label>
+        <input type="password" name="password" id="password" required />
+      
+        <!-- Hidden field to pass the selected role -->
+        <input type="hidden" id="role_hidden" name="role_hidden" />
+      
+        <button type="submit">লগ ইন</button>
+      </form>
+      
+
+      <!-- Link to signup page -->
+      <p>একাউন্ট নেই? <a href="signup.html">এখানে সাইন আপ করুন</a></p>
+    </div>
+
+    <footer>
+      <p>&copy; 2025 ফায়ার সার্ভিস ম্যাপ</p>
+    </footer>
+    <script>
+      document.getElementById("loginForm").addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent default form submission
+    
+        // Get form data
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const selectedRole = document.querySelector('input[name="role"]:checked');
+    
+        if (!selectedRole) {
+          alert("Please select a role.");
+          return;
+        }
+    
+        const role = selectedRole.value;
+    
+        // Prepare data to send to the server
+        const loginData = {
+          email: email,
+          password: password,
+          role_hidden: role,
+        };
+    
+        // Send login data to the server
+        fetch("login_action.php", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(loginData),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              // Save User_ID in localStorage
+              localStorage.setItem("User_id", data.User_ID);
+    
+              // Redirect to the appropriate dashboard
+              window.location.href = data.redirect;
+            } else {
+              // Display error message
+              alert(data.message);
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            alert("Something went wrong. Please try again later.");
+          });
+      });
+    </script>
+    
+  </body>
+</html>

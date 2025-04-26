@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>সাধারণ নাগরিক ড্যাশবোর্ড</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-draw@1.0.4/dist/leaflet.draw.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="civilian_dashboard.css" />
+  <!-- Link to sidebar.css -->
+  <link rel="stylesheet" href="sidebar_of_road_status.css" />
+  <link rel="stylesheet" href="common.css" />
+  <link rel="stylesheet" href="index_design.css" />
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="nav-start">
+      <button id="back-btn" class="nav-btn" onclick="history.back()">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <span class="nav-title">ফায়ার সেফটি ম্যাপ</span>
+    </div>
+    <div class="nav-end">
+      
+      <div class="language-toggle">
+        <input type="checkbox" id="language-toggle" class="toggle-input" />
+        <label for="language-toggle" class="toggle-label">
+          <span class="toggle-en">En</span>
+          <span class="toggle-bn">Bn</span>
+        </label>
+      </div>
+      <button id="contributors-btn" class="nav-btn" onclick="window.location.href='contributors.html'">
+        অবদানকারী
+      </button>
+      <button id="login-btn" class="nav-btn" onclick="window.location.href='index.html'">
+        লগআউট
+      </button>
+      <img src="images/logo.png" alt="logo" class="logo" />
+    </div>
+  </nav>
+
+  <main>
+    <div id="dashboard-layout">
+      <section id="controls-container">
+        <button id="report-fire-btn">
+          <i class="fas fa-fire"></i>
+          রিপোর্ট ফায়ার
+        </button>
+        <button id="delete-fire-btn">
+          <i class="fas fa-trash"></i>
+          ডিলিট রিপোর্ট ফায়ার
+        </button>
+      </section>
+
+      <section id="map-container">
+        <div id="map"></div>
+      </section>
+    </div>
+
+    <!-- Fire Report Modal -->
+    <div id="fire-report-modal" class="popup hidden">
+      <div class="popup-content">
+        <h3>অপশন নির্বাচন করুন</h3>
+        <button id="spectator-btn" class="modal-btn">
+          <i class="fas fa-eye"></i>
+          দর্শক
+        </button>
+        <button id="victim-btn" class="modal-btn">
+          <i class="fas fa-user-injured"></i>
+          ভুক্তভোগী
+        </button>
+        <button id="close-modal-btn" class="modal-btn">
+          <i class="fas fa-times"></i>
+          বন্ধ করুন
+        </button>
+      </div>
+    </div>
+
+    <!-- Road Status Sidebar -->
+    <div id="road-status-sidebar" class="sidebar hidden">
+      <div class="sidebar-content">
+        <h3 id="road-status-title">রাস্তার অবস্থা আপডেট করুন</h3>
+        <input type="hidden" id="road_id" name="road_id" />
+
+        <!-- Road Status Form -->
+        <form id="road-status-form">
+          <!-- Question: Busy All Time -->
+          <div class="form-group">
+            <label>রাস্তা সব সময় ব্যস্ত?</label>
+            <div class="radio-group">
+              <label>
+                <input type="radio" name="busy_all_time" value="yes" data-question="busy_all_time"> হ্যাঁ
+              </label>
+              <label>
+                <input type="radio" name="busy_all_time" value="no" data-question="busy_all_time"> না
+              </label>
+              <label>
+                <input type="radio" name="busy_all_time" value="sometimes" data-question="busy_all_time"> কখনও কখনও
+              </label>
+            </div>
+          </div>
+
+          <!-- Question: Too Narrow -->
+          <div class="form-group">
+            <label>রাস্তা খুব সরু?</label>
+            <div class="radio-group">
+              <label>
+                <input type="radio" name="too_narrow" value="yes" data-question="too_narrow"> হ্যাঁ
+              </label>
+              <label>
+                <input type="radio" name="too_narrow" value="no" data-question="too_narrow"> না
+              </label>
+            </div>
+          </div>
+
+          <!-- Question: Heavy Truck -->
+          <div class="form-group">
+            <label>কি ভারী ট্রাক এই রাস্তা দিয়ে যেতে পারে?</label>
+            <div class="radio-group">
+              <label>
+                <input type="radio" name="heavy_truck_pass_easily" value="yes" data-question="heavy_truck_pass_easily"> হ্যাঁ
+              </label>
+              <label>
+                <input type="radio" name="heavy_truck_pass_easily" value="no" data-question="heavy_truck_pass_easily"> না
+              </label>
+            </div>
+          </div>
+          
+
+          <!-- Question: Under Construction -->
+          <div class="form-group">
+            <label>রাস্তা নির্মাণাধীন?</label>
+            <div class="radio-group">
+              <label>
+                <input type="radio" name="under_construction" value="yes" data-question="under_construction"> হ্যাঁ
+              </label>
+              <label>
+                <input type="radio" name="under_construction" value="no" data-question="under_construction"> না
+              </label>
+            </div>
+          </div>
+
+          <!-- Save Button -->
+          <button type="submit" id="submit-btn" class="submit-btn">
+            <i class="fas fa-save"></i> সংরক্ষণ করুন
+          </button>
+        </form>
+
+        <!-- Vote Summary -->
+        <div id="vote-summary">
+          <h4>ভোটের শতাংশ</h4>
+          <div class="vote-items">
+            <div class="vote-item">
+              <span>রাস্তা সব সময় ব্যস্ত?</span>
+              <div class="progress">
+                <div class="progress-bar" id="busy-progress" style="width: 0%;">
+                  <span id="busy-percentage">0%</span>
+                </div>
+              </div>
+            </div>
+            <div class="vote-item">
+              <span>রাস্তা খুব সরু?</span>
+              <div class="progress">
+                <div class="progress-bar" id="narrow-progress" style="width: 0%;">
+                  <span id="narrow-percentage">0%</span>
+                </div>
+              </div>
+            </div>
+            <div class="vote-item">
+              <span>কি ভারী ট্রাক যেতে পারে?</span>
+              <div class="progress">
+                <div class="progress-bar" id="truck-progress" style="width: 0%;">
+                  <span id="truck-percentage">0%</span>
+                </div>
+              </div>
+            </div>
+            <div class="vote-item">
+              <span>রাস্তা নির্মাণাধীন?</span>
+              <div class="progress">
+                <div class="progress-bar" id="construction-progress" style="width: 0%;">
+                  <span id="construction-percentage">0%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Close Button -->
+        <button id="close-sidebar" class="close-btn" aria-label="বন্ধ করুন">
+          <i class="fas fa-times"></i> বন্ধ করুন
+        </button>
+      </div>
+    </div>
+
+
+
+
+    <!-- Waiting Popup -->
+    <div id="waiting-popup" class="popup hidden">
+      <div class="popup-content">
+        <h3>আপনার প্রস্তাবিত রোডটি যাচাই করার জন্য অপেক্ষা করুন...</h3>
+        <div class="spinner"></div>
+      </div>
+    </div>
+
+    <!-- Success Popup -->
+    <div id="success-popup" class="popup hidden">
+      <div class="popup-content">
+        <h3>যাচাই সফল হয়েছে!</h3>
+        <button id="close-success-popup-btn" class="close-btn">
+          <i class="fas fa-check"></i>
+          ঠিক আছে
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 ফায়ার সার্ভিস ম্যাপ</p>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/leaflet-draw@1.0.4/dist/leaflet.draw.js"></script>
+  <script src="map_script.js"></script>
+</body>
+
+</html>

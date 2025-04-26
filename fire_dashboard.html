@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firefighter Dashboard</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-draw@1.0.4/dist/leaflet.draw.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="fire_dashboard.css">
+    <link rel="stylesheet" href="common.css" />
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="nav-start">
+            <button id="back-btn" class="nav-btn" onclick="history.back()">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <span class="nav-title">ফায়ার ষ্টেশন ডেসবোর্ড</span>
+        </div>
+        <div class="nav-end">
+            <div class="language-toggle">
+                <input type="checkbox" id="language-toggle" class="toggle-input" />
+                <label for="language-toggle" class="toggle-label">
+                    <span class="toggle-en">En</span>
+                    <span class="toggle-bn">Bn</span>
+                </label>
+            </div>
+            <button id="contributors-btn" class="nav-btn" onclick="window.location.href='contributors.html'">
+                অবদানকারী
+            </button>
+            <img src="images/logo.png" alt="logo" class="logo" />
+        </div>
+    </nav>
+    <main>
+        <div id="map"></div>
+        <div id="fire-dashboard">
+            <!-- Road Status Box -->
+            <section id="road-status">
+                <h3>Road Status</h3>
+                <div id="road-content">Loading road conditions...</div>
+            </section>
+
+            <!-- Notifications Box -->
+            <section id="notifications">
+                <h3>Notifications</h3>
+                <ul id="notification-list">No notifications yet.</ul>
+            </section>
+
+            <!-- Responses Box -->
+            <section id="responses_spectator">
+                <h3>Spectators Status</h3>
+                <div id="response-content">No responses yet.</div>
+            </section>
+
+            <!-- Responses Box -->
+            <section id="responses_victim">
+                <h3>Victims Status</h3>
+                <div id="response-content">No responses yet.</div>
+            </section>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2025 Fire Safety System</p>
+    </footer>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="fire_dashboard.js"></script>
+</body>
+
+</html>

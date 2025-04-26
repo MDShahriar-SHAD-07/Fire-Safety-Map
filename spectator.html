@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ফায়ার সেফটি ম্যাপ</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="common.css" />
+  <link rel="stylesheet" href="spectator_victim.css" />
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="nav-start">
+      <button id="back-btn" class="nav-btn" onclick="history.back()">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <span class="nav-title">ফায়ার সেফটি ম্যাপ (দর্শক)</span>
+    </div>
+    <div class="nav-end">
+
+      <div class="language-toggle">
+        <input type="checkbox" id="language-toggle" class="toggle-input" />
+        <label for="language-toggle" class="toggle-label">
+          <span class="toggle-en">En</span>
+          <span class="toggle-bn">Bn</span>
+        </label>
+      </div>
+      <button id="contributors-btn" class="nav-btn" onclick="window.location.href='contributors.html'">
+        অবদানকারী
+      </button>
+      <button id="login-btn" class="nav-btn" onclick="window.location.href='index.html'">
+        লগআউট
+      </button>
+      <img src="images/logo.png" alt="logo" class="logo" />
+    </div>
+  </nav>
+  <main class="main-wrapper">
+    <form id="spectatorForm" action="submit_spectator.php" method="POST" enctype="multipart/form-data">
+      <!-- Section 1: Questions with Options -->
+      <section class="scroll-section question-section">
+        <div class="container">
+          <h2>পরিস্থিতি প্রতিবেদন</h2>
+          <div class="cards">
+            <!-- Card 1 -->
+            <div class="card" data-single-select="true">
+              <h3>আগুনের তীব্রতা কত?</h3>
+              <div class="options">
+                <input type="radio" name="fire_intensity" value="low" id="fire_low" hidden />
+                <label for="fire_low" class="option-button">কম</label>
+                <input type="radio" name="fire_intensity" value="medium" id="fire_medium" hidden />
+                <label for="fire_medium" class="option-button">মধ্যম</label>
+                <input type="radio" name="fire_intensity" value="high" id="fire_high" hidden />
+                <label for="fire_high" class="option-button">উচ্চ</label>
+              </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="card" data-single-select="true">
+              <h3>কোন হতাহত আছে কি?</h3>
+              <div class="options">
+                <input type="radio" name="casualties" value="none" id="cas_none" hidden />
+                <label for="cas_none" class="option-button">কোনও নেই</label>
+                <input type="radio" name="casualties" value="few" id="cas_few" hidden />
+                <label for="cas_few" class="option-button">কিছু</label>
+                <input type="radio" name="casualties" value="many" id="cas_many" hidden />
+                <label for="cas_many" class="option-button">অনেক</label>
+              </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="card" data-single-select="false">
+              <h3>কোন সম্পদ প্রয়োজন?</h3>
+              <div class="options">
+                <input type="checkbox" name="resources[]" value="water" id="res_water" hidden />
+                <label for="res_water" class="option-button">পানি</label>
+                <input type="checkbox" name="resources[]" value="medical" id="res_medical" hidden />
+                <label for="res_medical" class="option-button">চিকিৎসা সহায়তা</label>
+                <input type="checkbox" name="resources[]" value="rescue" id="res_rescue" hidden />
+                <label for="res_rescue" class="option-button">উদ্ধার</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2: Image Upload -->
+      <section class="scroll-section image-upload-section">
+        <div class="container">
+          <h2>পরিস্থিতির ছবি আপলোড করুন</h2>
+          <form id="imageUploadForm" action="submit_spectator.php" method="POST" enctype="multipart/form-data">
+            <label for="image-input">একটি ছবি নির্বাচন করুন:</label>
+            <input type="file" id="image-input" name="spec_picture" accept="image/*" required />
+            <button type="submit" class="upload-button">আপলোড</button>
+          </form>
+        </div>
+      </section>
+    </form>
+
+    <!-- New Section: Submit Button -->
+    <form id="protibedonForm" action="add_notification.php" method="POST" enctype="multipart/form-data">
+      <section class="scroll-section submit-section">
+        <div class="container">
+          <button type="submit" class="protibedon-button">
+            প্রতিবেদন জমা দিন
+          </button>
+        </div>
+      </section>
+    </form>
+
+    <!-- Section 3: Instructions -->
+    <section class="scroll-section instruction-section">
+      <div class="container">
+        <h2>নির্দেশাবলী</h2>
+        <div class="instruction-cards">
+          <!-- Card 1 -->
+          <div class="instruction-card">
+            <img src="images/keep_calm.gif" alt="Stay Calm" class="instruction-gif" />
+            <h3>শান্ত থাকুন</h3>
+            <p>অন্যদের নিরাপত্তায় সাহায্য করুন এবং নিজেকে শান্ত রাখুন।</p>
+          </div>
+          <!-- Card 2 -->
+          <div class="instruction-card">
+            <img src="images/0114.gif" alt="Contact Authorities" class="instruction-gif" />
+            <h3>কর্তৃপক্ষের সাথে যোগাযোগ করুন</h3>
+            <p>নির্ভুল তথ্য সহ জরুরি সেবাকে জানান।</p>
+          </div>
+          <!-- Card 3 -->
+          <div class="instruction-card">
+            <img src="images/lv_0_20250126130947.gif" alt="Avoid Danger Zones" class="instruction-gif" />
+            <h3>উৎসুক জনতার ভিড় নিয়ন্ত্রণ করার চেষ্টা করুন </h3>
+            <p>
+              আগুনের হটস্পট থেকে দূরে থাকুন এবং উদ্ধারের পরিকল্পনা অনুসরণ
+              করুন।
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2025 ফায়ার সার্ভিস ম্যাপ</p>
+  </footer>
+  <script>
+    document.querySelectorAll('.card[data-single-select]').forEach((card) => {
+      card.addEventListener('click', (event) => {
+        const options = card.querySelectorAll('.option-button');
+        const inputs = card.querySelectorAll('input[type="radio"]');
+        options.forEach((option, index) => {
+          if (inputs[index].checked) {
+            option.classList.add('selected');
+          } else {
+            option.classList.remove('selected');
+            option.classList.add('disabled');
+          }
+        });
+      });
+    });
+    const spectatorForm = document.getElementById("spectatorForm");
+
+    spectatorForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      // Retrieve Spec_ID from localStorage
+      const specId = localStorage.getItem("Spec_ID");
+
+      // Log Spec_ID for debugging
+      console.log("Spec_ID from localStorage:", specId);
+
+      if (!specId) {
+        alert("Spec_ID is missing. Please start the spectator process again.");
+        return;
+      }
+
+      const formData = new FormData(spectatorForm);
+      formData.append("Spec_ID", specId); // Append Spec_ID to the form data
+
+      fetch("submit_spectator.php", {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Response from submit_spectator.php:", data);
+          if (data.success) {
+            alert(data.message);
+          } else {
+            alert(data.message || "An error occurred.");
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          alert("An error occurred while submitting the form.");
+        });
+    });
+
+    // Add event listener for the "প্রতিবেদন জমা দিন" button form
+    const protibedonForm = document.getElementById("protibedonForm");
+
+    protibedonForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      // Retrieve Spec_ID from localStorage
+      const specId = localStorage.getItem("Spec_ID");
+
+      // Log Spec_ID for debugging
+      console.log("Spec_ID from localStorage:", specId);
+
+      if (!specId) {
+        alert("Spec_ID is missing. Please start the spectator process again.");
+        return;
+      }
+
+      const formData = new FormData(protibedonForm);
+      formData.append("Spec_ID", specId); // Append Spec_ID to the form data
+
+      // First fetch: Submit notification (add_notification.php)
+      fetch("add_notification.php", {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Response from add_notification.php:", data);
+          if (data.success) {
+            alert(data.message);
+          } else {
+            alert(data.message || "An error occurred while adding the notification.");
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          alert("An error occurred while submitting the notification.");
+        });
+    });
+
+
+    window.addEventListener("load", function () {
+      var specId = localStorage.getItem("Spec_ID");
+      console.log("Spec_ID from localStorage:", specId);
+
+      if (specId) {
+        // If Spec_ID is found, proceed with the rest of the form submission
+        // Use specId to make further actions (like submitting data)
+      } else {
+        alert("Spec_ID not found in localStorage!");
+      }
+    });
+
+    function goBack() {
+      // Redirect to the landing page
+      window.location.href = "civilian_dashboard.html"; // Replace with your landing page URL
+    }
+  </script>
+</body>
+
+</html>

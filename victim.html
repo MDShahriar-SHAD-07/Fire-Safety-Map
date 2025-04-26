@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ভিকটিম ড্যাশবোর্ড</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="common.css" />
+  <link rel="stylesheet" href="spectator_victim.css" />
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="nav-start">
+      <button id="back-btn" class="nav-btn" onclick="history.back()">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <span class="nav-title">ফায়ার সেফটি ম্যাপ (ভুক্তভুগী )</span>
+    </div>
+    <div class="nav-end">
+
+      <div class="language-toggle">
+        <input type="checkbox" id="language-toggle" class="toggle-input" />
+        <label for="language-toggle" class="toggle-label">
+          <span class="toggle-en">En</span>
+          <span class="toggle-bn">Bn</span>
+        </label>
+      </div>
+      <button id="contributors-btn" class="nav-btn" onclick="window.location.href='contributors.html'">
+        অবদানকারী
+      </button>
+      <button id="login-btn" class="nav-btn" onclick="window.location.href='index.html'">
+        লগআউট
+      </button>
+      <img src="images/logo.png" alt="logo" class="logo" />
+    </div>
+  </nav>
+
+  <main class="main-wrapper">
+    <form id="victimForm" action="submit_victim.php" method="POST" enctype="multipart/form-data">
+      <!-- Section 1: Questions with Options -->
+      <section class="scroll-section question-section">
+        <div class="container">
+          <h2>জরুরি রিপোর্ট</h2>
+          <div class="cards">
+            <!-- Card 1: Smoke Condition -->
+            <div class="card" data-single-select="true">
+              <h3>ধোঁয়ার পরিমান কেমন?</h3>
+              <div class="options">
+                <input type="radio" name="smoke_condition" value="low" id="smoke_low" hidden />
+                <label for="smoke_low" class="option-button">অল্প</label>
+                <input type="radio" name="smoke_condition" value="mid" id="smoke_mid" hidden />
+                <label for="smoke_mid" class="option-button">মাঝারি</label>
+                <input type="radio" name="smoke_condition" value="high" id="smoke_high" hidden />
+                <label for="smoke_high" class="option-button">তীব্র</label>
+              </div>
+            </div>
+            <!-- Card 2: Victim Count -->
+            <div class="card" data-single-select="true">
+              <h3>কতজন ভিকটিম আছেন?</h3>
+              <div class="options">
+                <input type="radio" name="victim_count" value="1-5" id="vc_1_5" hidden />
+                <label for="vc_1_5" class="option-button">১-৫</label>
+                <input type="radio" name="victim_count" value="5-10" id="vc_5_10" hidden />
+                <label for="vc_5_10" class="option-button">৫-১০</label>
+                <input type="radio" name="victim_count" value="10+" id="vc_10plus" hidden />
+                <label for="vc_10plus" class="option-button">১০+</label>
+              </div>
+            </div>
+            <!-- Card 3: Building Location -->
+            <div class="card" data-single-select="true">
+              <h3>ভবনে আপনার অবস্থান?</h3>
+              <div class="options">
+                <input type="radio" name="building_location" value="ground_floor" id="building_location_ground_floor" hidden />
+                <label for="building_location_ground_floor" class="option-button">নিচতলা</label>
+                <input type="radio" name="building_location" value="2nd_to_4thfloor" id="building_location_2nd_to_4th" hidden />
+                <label for="building_location_2nd_to_4th" class="option-button">২য়-৪র্থ</label>
+                <input type="radio" name="building_location" value="above_4thfloor" id="building_location_above_4th" hidden />
+                <label for="building_location_above_4th" class="option-button">৪র্থ.তলার.উপরে</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2: Image Upload -->
+      <section class="scroll-section image-upload-section">
+        <div class="container">
+          <h2>পরিস্থিতির ছবি আপলোড করুন</h2>
+          <label for="image-input">একটি ছবি নির্বাচন করুন:</label>
+          <input type="file" id="image-input" name="vic_picture" accept="image/*" required />
+        </div>
+      </section>
+
+      <!-- New Section: Submit Button -->
+      <section class="scroll-section submit-section">
+        <div class="container">
+          <button type="submit" class="submit-button">রিপোর্ট জমা দিন</button>
+        </div>
+      </section>
+    </form>
+
+
+
+    <!-- Section 3: Safety Instructions -->
+    <section class="scroll-section instruction-section">
+      <div class="container">
+        <h2>নিরাপত্তা নির্দেশাবলী</h2>
+        <div class="instruction-cards">
+          <!-- Instruction 1 -->
+          <div class="instruction-card">
+            <img src="images/victim_smoke.png" alt="Find Safe Zone" class="instruction-gif" />
+            <h3>নিরাপদ স্থানে যান</h3>
+            <p>ঝুঁকিপূর্ণ এলাকা থেকে নিরাপদ স্থানে যান।</p>
+          </div>
+          <!-- Instruction 2 -->
+          <div class="instruction-card">
+            <img src="images/0114.gif" alt="Call for Help" class="instruction-gif" />
+            <h3>সাহায্যের জন্য কল করুন</h3>
+            <p>জরুরি নম্বরে কল করুন এবং অবস্থান জানান।</p>
+          </div>
+          <!-- Instruction 3 -->
+          <div class="instruction-card">
+            <img src="images/safe.png" alt="Stay Alert" class="instruction-gif" />
+            <h3>সতর্ক থাকুন</h3>
+            <p>পরিস্থিতি পর্যবেক্ষণ করুন এবং নির্দেশাবলী অনুসরণ করুন।</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 ফায়ার সার্ভিস ম্যাপ</p>
+  </footer>
+  <script>
+    document.querySelectorAll('.card[data-single-select]').forEach((card) => {
+      card.addEventListener('click', (event) => {
+        const options = card.querySelectorAll('.option-button');
+        const inputs = card.querySelectorAll('input[type="radio"]');
+        options.forEach((option, index) => {
+          if (inputs[index].checked) {
+            option.classList.add('selected');
+          } else {
+            option.classList.remove('selected');
+            option.classList.add('disabled');
+          }
+        });
+      });
+    });
+
+    const victimForm = document.getElementById("victimForm");
+
+    victimForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      // Retrieve Vic_ID from localStorage
+      const vicId = localStorage.getItem("Vic_ID");
+
+      // Log Vic_ID for debugging
+      console.log("Vic_ID from localStorage:", vicId);
+
+      if (!vicId) {
+        alert("Vic_ID is missing. Please start the victim process again.");
+        return;
+      }
+
+      const formData = new FormData(victimForm);
+      formData.append("Vic_ID", vicId); // Append Vic_ID to the form data
+
+      // Check if all fields are properly selected
+      const smokeCondition = formData.get("smoke_condition");
+      const victimCount = formData.get("victim_count");
+      const buildingLocation = formData.get("building_location");
+
+      // Debugging: Log values to check
+      console.log("Smoke Condition:", smokeCondition);
+      console.log("Victim Count:", victimCount);
+      console.log("Building Location:", buildingLocation);
+
+      // Submit form data
+      fetch("submit_victim.php", {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Response from submit_victim.php:", data);
+          if (data.success) {
+            alert(data.message);
+          } else {
+            alert(data.message || "An error occurred.");
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          alert("An error occurred while submitting the form.");
+        });
+    });
+
+    window.addEventListener("load", function () {
+      var vicId = localStorage.getItem("Vic_ID");
+      console.log("Vic_ID from localStorage:", vicId);
+
+      if (vicId) {
+        // If Vic_ID is found, proceed with the rest of the form submission
+        // Use vicId to make further actions (like submitting data)
+      } else {
+        alert("Vic_ID not found in localStorage!");
+      }
+    });
+    function goBack() {
+      // Redirect to the previous page
+      window.location.href = "civilian_dashboard.html"; // Replace with the actual URL
+    }
+  </script>
+</body>
+
+</html>

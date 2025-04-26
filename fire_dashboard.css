@@ -1,0 +1,221 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+.nav-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff; 
+  margin-left: 10px; 
+}
+  
+  #map {
+    position: absolute;
+    top: 4rem; /* Offset for the navbar height */
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+  }
+  
+  #fire-dashboard {
+    position: absolute;
+    top: 4rem; /* Align with the map's top offset */
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1; /* Ensure the dashboard is above the map */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 1rem;
+    pointer-events: none; /* Allow map interaction through empty areas */
+  }
+  
+  #road-status,
+  #notifications,
+  #responses_spectator,
+  #responses_victim {
+    background: rgb(180, 0, 0);
+    background: linear-gradient(
+      180deg,
+      rgba(180, 0, 0, 1) 0%,
+      rgba(22, 0, 0, 1) 100%
+    );
+    opacity: 0.9;
+    color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 1.5rem;
+    pointer-events: auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    box-sizing: border-box;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  #road-status {
+    position: absolute;
+    top: 1rem;
+    left: 4rem;
+    width: 300px;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto; /* Enable vertical scrolling */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+  }
+  
+  #notifications {
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    width: 350px;
+    height: 35vh;
+    max-height: 60vh;
+    background: rgb(180, 0, 0);
+    background: linear-gradient(
+      180deg,
+      rgba(180, 0, 0, 1) 0%,
+      rgba(22, 0, 0, 1) 100%
+    );
+    display: flex;
+    flex-direction: column;
+  }
+  
+  #responses_spectator {
+    position: absolute;
+    top: calc(-1rem + 40vh);
+    right: 2rem;
+    width: 350px;
+    height: 25.6vh;
+ 
+    display: flex;
+    flex-direction: column;
+  }
+  
+  #responses_victim {
+    position: absolute;
+    top: 25rem;
+    left: 4rem;
+    width: 300px;
+    height:  25.6vh;
+  
+    display: flex;
+    flex-direction: column;
+  }
+  
+  #road-status h3,
+  #notifications h3,
+  #responses_spectator h3,
+  #responses_victim h3 {
+    font-size: 1.2rem;
+    color: #fff;
+    margin: 0 0 1rem 0;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid #f0f0f0;
+  }
+  
+  #notifications button {
+    width: calc(100% - 1rem);
+    padding: 1rem;
+    margin: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    text-align: left;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  #notifications button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+  }
+  
+  #notifications button::before {
+    content: "⚡";
+    font-size: 1.1rem;
+    color: #f59e0b;
+    flex-shrink: 0;
+  }
+  
+  #notification-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    overflow-y: auto;
+    flex-grow: 1;
+  }
+  
+  #road-content,
+  #response-content {
+    flex: 1;
+    padding: 0.5rem 0;
+    overflow-y: auto;
+  }
+  
+  footer {
+    background-color: #d32f2f;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    position: relative;
+    z-index: 1000;
+  }
+  
+  /* Custom scrollbar for better visibility */
+  #notifications,
+  #responses_spectator,
+  #responses_victim {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+  }
+  
+  #notifications::-webkit-scrollbar,
+  #responses_spectator::-webkit-scrollbar,
+  #responses_victim::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  #notifications::-webkit-scrollbar-thumb,
+  #responses_spectator::-webkit-scrollbar-thumb,
+  #responses_victim::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+  }
+  
+  #notifications::-webkit-scrollbar-track,
+  #responses_spectator::-webkit-scrollbar-track,
+  #responses_victim::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  #road-status::-webkit-scrollbar {
+    width: 6px;
+}
+
+#road-status::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+}
+
+#road-status::-webkit-scrollbar-track {
+    background: transparent;
+}
+  

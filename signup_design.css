@@ -1,0 +1,329 @@
+/* signup_design.css */
+@import url("common.css");
+@import url("https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap");
+
+:root {
+  --primary-color: #e53935;
+  --primary-dark: #c62828;
+  --primary-light: #ff6b6b;
+  --secondary-color: #2c3e50;
+  --background-color: #f8f9fa;
+  --surface-color: #ffffff;
+  --error-color: #dc3545;
+  --success-color: #28a745;
+  --border-radius: 12px;
+  --box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  margin: 0;
+  font-family: "Hind Siliguri", sans-serif;
+}
+
+.container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  max-width: 450px;
+  margin: 2rem auto;
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.role-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 400px;
+  padding: 2rem;
+  background: var(--surface-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+.role-btn {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 1.5rem;
+  background: linear-gradient(
+    45deg,
+    var(--primary-color),
+    var(--primary-light)
+  );
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.role-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(229, 57, 53, 0.3);
+}
+
+.role-btn:active {
+  transform: translateY(0);
+}
+
+.role-icon {
+  font-size: 1.5rem;
+}
+
+.role-text {
+  flex: 1;
+  text-align: center;
+}
+
+.role-selection {
+  background: var(--surface-color);
+  padding: 1.75rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  width: 100%;
+  margin-bottom: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.role-selection:hover {
+  transform: translateY(-2px);
+}
+
+.role-option {
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.role-option input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.role-label {
+  padding-left: 2.5rem;
+  color: var(--secondary-color);
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.role-label:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  border: 2px solid #ddd;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.role-option input[type="radio"]:checked + .role-label:before {
+  border-color: var(--primary-color);
+  background: var(--primary-color);
+  box-shadow: inset 0 0 0 6px var(--surface-color);
+}
+
+form {
+  background: var(--surface-color);
+  padding: 2.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  width: 100%;
+  transition: transform 0.3s ease;
+}
+
+form:hover {
+  transform: translateY(-2px);
+}
+
+form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--secondary-color);
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+form input {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: calc(var(--border-radius) - 4px);
+  font-size: 1rem;
+  background: #f8f9fa;
+  transition: all 0.2s ease;
+  margin-bottom: 1rem;
+}
+
+form input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  background: var(--surface-color);
+  box-shadow: 0 0 0 4px rgba(229, 57, 53, 0.1);
+}
+
+form button {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(
+    45deg,
+    var(--primary-color),
+    var(--primary-light)
+  );
+  color: white;
+  border: none;
+  border-radius: calc(var(--border-radius) - 4px);
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+form button:hover {
+  background: linear-gradient(45deg, var(--primary-dark), var(--primary-color));
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(229, 57, 53, 0.3);
+}
+
+form button:active {
+  transform: translateY(0);
+}
+
+p {
+  margin-top: 1.5rem;
+  text-align: center;
+  color: var(--secondary-color);
+  font-size: 0.95rem;
+}
+
+p a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  padding-bottom: 2px;
+}
+
+p a:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--primary-color);
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease;
+}
+
+p a:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 1rem;
+    margin: 1rem auto;
+  }
+
+  form {
+    padding: 1.5rem;
+  }
+
+  .role-selection {
+    padding: 1.25rem;
+  }
+
+  form button {
+    padding: 0.875rem;
+  }
+}
+
+form input.error {
+  border-color: var(--error-color);
+  background-color: rgba(220, 53, 69, 0.05);
+}
+
+.error-message {
+  color: var(--error-color);
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+form button.loading {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+form button.loading:after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  left: 50%;
+  margin: -10px 0 0 -10px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+form input.success {
+  border-color: var(--success-color);
+  background-color: rgba(40, 167, 69, 0.05);
+}
+
+form input:focus + label,
+.input-group:focus-within label {
+  color: var(--primary-color);
+}
+
+.role-option:hover .role-label:before {
+  border-color: var(--primary-color);
+}

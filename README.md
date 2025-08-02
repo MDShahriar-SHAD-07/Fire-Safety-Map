@@ -58,15 +58,56 @@ To provide firefighters with **real-time data** and a **dynamic interface** to t
 
 ```bash
 Fire-Safety-Map/
+├── README.md
 ├── index.html
-├── civilian.html
-├── fire_officer_dashboard.html
-├── js/
-│   └── map_script.js
-├── php/
-│   ├── add_spectator.php
-│   ├── submit_spectator.php
-│   └── ...
+├── login.html
+├── signup.html
+├── map_report.html
+├── civilian_dashboard.html
+├── fire_dashboard.html
+├── spectator.html
+├── victim.html
+├── contributors.html
+│
 ├── css/
-│   └── styles.css
-└── README.md
+│ ├── civilian_dashboard.css
+│ ├── fire_dashboard.css
+│ ├── login_design.css
+│ ├── signup_design.css
+│ ├── signup_civilian_fireofficer.css
+│ ├── signup_fire_officer.css
+│ ├── spectator_victim.css
+│ ├── sidebar_of_road_status.css
+│ ├── index_design.css
+│ ├── contributors.css
+│ ├── style.css
+│ └── common.css
+│
+├── js/
+│ ├── map_script.js
+│ └── common.js
+│
+├── php/
+│ ├── db.php
+│ ├── add_spectator.php
+│ ├── add_victim.php
+│ ├── submit_spectator.php
+│ ├── submit_victim.php
+│ ├── login_action.php
+│ ├── signup_action.php
+│ ├── get_roads.php
+│ ├── get_road_status.php
+│ ├── get_fire_stations.php
+│ ├── get_nearest_station.php
+│ ├── update_nearest_station.php
+│ ├── update_user_location.php
+│ ├── get_notifications.php
+│ ├── add_notification.php
+│ ├── add_decision.php
+│ ├── update_votes.php
+│ ├── get_spectator_data.php
+│ ├── get_victim_data.php
+│ ├── load_data.php
+│ ├── save_data.php
+│ └── delete_data.php
+

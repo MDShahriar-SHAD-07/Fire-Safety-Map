@@ -110,4 +110,3 @@ Fire-Safety-Map/
 │ ├── load_data.php
 │ ├── save_data.php
 │ └── delete_data.php
-
